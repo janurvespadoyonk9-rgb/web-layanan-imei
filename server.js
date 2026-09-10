@@ -3,12 +3,27 @@ const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const multer = require('multer');
 const fs = require('fs');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// ================= CONFIG EMAIL NOTIFIKASI =================
+const USER_GMAIL = 'janurvespadoyonk9@gmail.com'; // <-- Ganti dengan Gmail Anda
+const APP_PASSWORD_GOOGLE = 'snzw kpel ukqh vgyd'; // <-- Ganti dengan 16 digit Sandi Aplikasi Anda
+// ==========================================================
+
 // Kata sandi admin
 const ADMIN_PASSWORD = 'adminrahasia123';
+
+// Konfigurasi email transporter
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: USER_GMAIL,
+        pass: APP_PASSWORD_GOOGLE.replace(/\s+/g, '') // Menghapus spasi jika ada
+    }
+});
 
 // Konfigurasi folder penyimpanan gambar
 const uploadDir = path.join(__dirname, 'public', 'uploads');
@@ -51,7 +66,6 @@ db.run(`
         imagePath TEXT
     )
 `, () => {
-    // Tambah kolom imagePath secara otomatis jika database lama sudah ada
     db.run(`ALTER TABLE orders ADD COLUMN imagePath TEXT`, (err) => {});
 });
 
@@ -89,6 +103,43 @@ app.post('/api/orders', upload.single('image'), (req, res) => {
         if (err) {
             return res.status(500).json({ success: false, message: 'Gagal menyimpan pesanan ke database.' });
         }
+
+        // --- PROSES KIRIM NOTIFIKASI EMAIL ---
+        const rincianEmail = `
+            <div style="font-family: sans-serif; max-width: 500px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; color: #1e293b;">
+                <h2 style="color: #2563eb; margin-top: 0;">🔔 Ada Pesanan Baru Masuk!</h2>
+                <p>Halo Admin, seseorang baru saja melakukan pemesanan di website Jasa IMEI.</p>
+                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                    <tr><td style="padding: 4px 0; color: #64748b;">ID Pesanan:</td><td style="font-weight: bold;">${newOrder.id}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #64748b;">Nama:</td><td style="font-weight: bold;">${newOrder.name}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #64748b;">WhatsApp:</td><td><a href="https://wa.me/${newOrder.phone.replace(/[^0-9]/g, '')}" target="_blank">${newOrder.phone}</a></td></tr>
+                    <tr><td style="padding: 4px 0; color: #64748b;">IMEI:</td><td style="font-family: monospace;">${newOrder.imei}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #64748b;">Paket:</td><td>${newOrder.package}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #64748b;">Total Tagihan:</td><td style="color: #10b981; font-weight: bold;">Rp ${Number(newOrder.price).toLocaleString('id-ID')}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #64748b;">Tanggal:</td><td>${newOrder.createdAt}</td></tr>
+                </table>
+                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                <p style="font-size: 13px; color: #64748b; text-align: center;">Segera cek <a href="https://web-layanan-imei-production.up.railway.app/admin.html" target="_blank" style="color: #2563eb; font-weight: bold; text-decoration: none;">Dashboard Admin</a> untuk info lengkap.</p>
+            </div>
+        `;
+
+        const mailOptions = {
+            from: `"Notifikasi Web IMEI" <${USER_GMAIL}>`,
+            to: USER_GMAIL, // Kirim ke email Anda sendiri
+            subject: `🚨 PESANAN BARU: ${newOrder.id} - ${newOrder.name}`,
+            html: rincianEmail
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log('[-] Gagal mengirim email notifikasi:', error);
+            } else {
+                console.log('[+] Email notifikasi berhasil dikirim:', info.response);
+            }
+        });
+        // -------------------------------------
+
         res.json({
             success: true,
             message: 'Pesanan berhasil dibuat!',
