@@ -1,12 +1,35 @@
 const express = require('express');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
+const multer = require('multer');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Kata sandi admin sederhana (bisa diganti sesuai keinginan)
+// Kata sandi admin
 const ADMIN_PASSWORD = 'adminrahasia123';
+
+// Konfigurasi folder penyimpanan gambar
+const uploadDir = path.join(__dirname, 'public', 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, uploadDir);
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 5 * 1024 * 1024 } // Batas ukuran 5MB
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,19 +47,22 @@ db.run(`
         package TEXT NOT NULL,
         price INTEGER NOT NULL,
         status TEXT NOT NULL,
-        createdAt TEXT NOT NULL
+        createdAt TEXT NOT NULL,
+        imagePath TEXT
     )
-`);
+`, () => {
+    // Tambah kolom imagePath secara otomatis jika database lama sudah ada
+    db.run(`ALTER TABLE orders ADD COLUMN imagePath TEXT`, (err) => {});
+});
 
-// 1. Simpan Pesanan Baru (Publik)
-app.post('/api/orders', (req, res) => {
+// 1. Simpan Pesanan Baru dengan Unggah Gambar (Publik)
+app.post('/api/orders', upload.single('image'), (req, res) => {
     const { name, phone, imei, packageType } = req.body;
 
     if (!imei || imei.length !== 15 || isNaN(imei)) {
         return res.status(400).json({ success: false, message: 'Nomor IMEI harus berupa 15 digit angka!' });
     }
 
-   // Daftar paket dan harga baru
     const priceList = {
         '1 Bulan Fast (1 Jam)': 200000,
         '3 Bulan Slow (1-2x24 Jam)': 200000,
@@ -44,6 +70,7 @@ app.post('/api/orders', (req, res) => {
     };
 
     const price = priceList[packageType] || 200000;
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
     const newOrder = {
         id: 'INV-' + Date.now().toString().slice(-6),
@@ -53,11 +80,12 @@ app.post('/api/orders', (req, res) => {
         package: packageType,
         price,
         status: 'Menunggu Pembayaran',
-        createdAt: new Date().toLocaleString('id-ID')
+        createdAt: new Date().toLocaleString('id-ID'),
+        imagePath
     };
 
-    const sql = `INSERT INTO orders (id, name, phone, imei, package, price, status, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-    db.run(sql, [newOrder.id, newOrder.name, newOrder.phone, newOrder.imei, newOrder.package, newOrder.price, newOrder.status, newOrder.createdAt], (err) => {
+    const sql = `INSERT INTO orders (id, name, phone, imei, package, price, status, createdAt, imagePath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    db.run(sql, [newOrder.id, newOrder.name, newOrder.phone, newOrder.imei, newOrder.package, newOrder.price, newOrder.status, newOrder.createdAt, newOrder.imagePath], (err) => {
         if (err) {
             return res.status(500).json({ success: false, message: 'Gagal menyimpan pesanan ke database.' });
         }
@@ -110,7 +138,7 @@ app.post('/api/admin/login', (req, res) => {
     }
 });
 
-// 3. Ambil Semua Pesanan (Khusus Admin yang terverifikasi)
+// 3. Ambil Semua Pesanan (Khusus Admin)
 app.get('/api/admin/orders', checkAdminAuth, (req, res) => {
     db.all(`SELECT * FROM orders ORDER BY rowid DESC`, [], (err, rows) => {
         if (err) {
@@ -120,7 +148,7 @@ app.get('/api/admin/orders', checkAdminAuth, (req, res) => {
     });
 });
 
-// 4. Perbarui Status Pesanan (Khusus Admin yang terverifikasi)
+// 4. Perbarui Status Pesanan (Khusus Admin)
 app.post('/api/admin/orders/update-status', checkAdminAuth, (req, res) => {
     const { id, status } = req.body;
     const sql = `UPDATE orders SET status = ? WHERE id = ?`;
