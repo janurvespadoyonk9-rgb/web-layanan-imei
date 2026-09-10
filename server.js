@@ -15,10 +15,13 @@ const APP_PASSWORD_GOOGLE = 'snzw kpel ukqh vgyd'; // <-- Ganti dengan 16 digit 
 
 // Kata sandi admin
 // MENJADI SEPERTI INI:
+// Kata sandi admin
+const ADMIN_PASSWORD = 'adminrahasia123';
+
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
-    secure: true, // Menggunakan port 465 dengan enkripsi SSL langsung
+    secure: true,
     auth: {
         user: USER_GMAIL,
         pass: APP_PASSWORD_GOOGLE.replace(/\s+/g, '')
