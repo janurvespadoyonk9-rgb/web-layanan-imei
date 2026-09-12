@@ -11,97 +11,171 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .neon-glow:hover { box-shadow: 0 0 25px rgba(59, 130, 246, 0.45); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden flex flex-col items-center justify-center p-4 sm:p-6 md:p-10">
+<body class="bg-[#030712] text-slate-100 min-h-screen relative overflow-x-hidden flex flex-col items-center justify-center p-4 sm:p-6 md:p-10">
 
-    <!-- Efek Cahaya Latar Belakang (Glow) -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-blue-600/20 blur-[130px] rounded-full pointer-events-none -z-10"></div>
-    <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    <!-- Latar Belakang Desain (Pattern & Cyber Grid) -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] -z-20"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-blue-500/20 blur-[130px] rounded-full pointer-events-none -z-10"></div>
+    <div class="absolute top-1/4 right-0 w-[350px] h-[350px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    <div class="absolute top-1/2 left-0 w-[250px] h-[250px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
     <div class="w-full max-w-xl mx-auto flex flex-col items-center">
         
-        <!-- Header Judul & Logo -->
+        <!-- Header Judul & Brand Logo -->
         <div class="text-center w-full mb-8 flex flex-col items-center">
-            <div class="relative group mb-3">
-                <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
-                <img src="/logo.PNG" alt="AjiTech Logo" class="relative w-28 h-28 sm:w-32 sm:h-32 object-contain drop-shadow-2xl">
+            <div class="relative group mb-4">
+                <!-- Glowing border behind logo -->
+                <div class="absolute -inset-2 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full blur opacity-45 group-hover:opacity-75 transition duration-500"></div>
+                <img src="/logo.PNG" alt="AjiTech Logo" class="relative w-28 h-28 sm:w-32 sm:h-32 object-contain drop-shadow-[0_10px_35px_rgba(59,130,246,0.3)]">
             </div>
 
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
-                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+            <!-- Online / Fast badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">
+                <span class="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse"></span>
                 Layanan Cepat & Bergaransi
             </div>
 
-            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">Registrasi IMEI All Operator</h1>
-            <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-md">Buka blokir sinyal iPhone & Android Anda secara aman, cepat, dan bergaransi resmi.</p>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-blue-200">
+                Registrasi IMEI All Operator
+            </h1>
+            <p class="text-slate-400 text-sm sm:text-base mt-2.5 max-w-md leading-relaxed">
+                Solusi buka blokir sinyal iPhone & Android secara aman, cepat, dan bergaransi untuk semua jaringan.
+            </p>
 
             <!-- Trust Badges -->
-            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mt-4 text-xs text-slate-300 font-medium">
-                <span class="flex items-center gap-1.5 bg-slate-900/60 border border-slate-800 px-3 py-1.5 rounded-xl">⚡ 30-60 Menit Aktif</span>
-                <span class="flex items-center gap-1.5 bg-slate-900/60 border border-slate-800 px-3 py-1.5 rounded-xl">🛡️ Full Garansi</span>
-                <span class="flex items-center gap-1.5 bg-slate-900/60 border border-slate-800 px-3 py-1.5 rounded-xl">🔒 Data Aman</span>
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mt-4 text-[11px] sm:text-xs text-slate-300 font-semibold">
+                <span class="flex items-center gap-1.5 bg-slate-900/60 border border-slate-800/80 px-3 py-2 rounded-xl shadow-inner shadow-white/5">⚡ 30-60 Menit Aktif</span>
+                <span class="flex items-center gap-1.5 bg-slate-900/60 border border-slate-800/80 px-3 py-2 rounded-xl shadow-inner shadow-white/5">🛡️ Full Garansi</span>
+                <span class="flex items-center gap-1.5 bg-slate-900/60 border border-slate-800/80 px-3 py-2 rounded-xl shadow-inner shadow-white/5">🔒 Data Aman</span>
+            </div>
+        </div>
+
+        <!-- Alur 3 Langkah Mudah -->
+        <div class="w-full mb-8">
+            <h3 class="text-center text-xs font-bold text-blue-400/80 tracking-wider uppercase mb-4">3 Langkah Mudah</h3>
+            <div class="grid grid-cols-3 gap-2 sm:gap-3">
+                <!-- Langkah 1 -->
+                <div class="bg-slate-900/40 border border-slate-800/80 p-3 rounded-2xl flex flex-col items-center text-center">
+                    <div class="w-8 h-8 rounded-xl bg-blue-600/10 text-blue-400 flex items-center justify-center font-bold text-sm mb-1.5">1</div>
+                    <h4 class="text-xs font-bold text-slate-200">Isi Formulir</h4>
+                    <p class="text-[9px] text-slate-400 mt-0.5">Input data & imei</p>
+                </div>
+                <!-- Langkah 2 -->
+                <div class="bg-slate-900/40 border border-slate-800/80 p-3 rounded-2xl flex flex-col items-center text-center">
+                    <div class="w-8 h-8 rounded-xl bg-blue-600/10 text-blue-400 flex items-center justify-center font-bold text-sm mb-1.5">2</div>
+                    <h4 class="text-xs font-bold text-slate-200">Pembayaran</h4>
+                    <p class="text-[9px] text-slate-400 mt-0.5">Metode bervariasi</p>
+                </div>
+                <!-- Langkah 3 -->
+                <div class="bg-slate-900/40 border border-slate-800/80 p-3 rounded-2xl flex flex-col items-center text-center">
+                    <div class="w-8 h-8 rounded-xl bg-blue-600/10 text-blue-400 flex items-center justify-center font-bold text-sm mb-1.5">3</div>
+                    <h4 class="text-xs font-bold text-slate-200">Sinyal Aktif</h4>
+                    <p class="text-[9px] text-slate-400 mt-0.5">Instan & permanen</p>
+                </div>
             </div>
         </div>
 
         <!-- Kartu Formulir Registrasi -->
-        <div class="w-full bg-slate-900/75 backdrop-blur-xl border border-slate-800/90 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-black/50">
-            <h2 class="text-lg font-bold text-white mb-5 flex items-center gap-2.5 pb-4 border-b border-slate-800">
-                <span class="p-2 bg-blue-600/20 text-blue-400 rounded-xl">
+        <div class="w-full bg-slate-900/75 backdrop-blur-xl border border-slate-800/90 rounded-[28px] p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <h2 class="text-lg font-bold text-white mb-6 flex items-center gap-2.5 pb-4 border-b border-slate-800/60">
+                <span class="p-2 bg-gradient-to-br from-blue-600/20 to-blue-500/10 text-blue-400 rounded-xl">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                 </span>
                 Formulir Pendaftaran
             </h2>
 
             <form id="orderForm" class="space-y-4">
+                <!-- Nama Lengkap -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Nama Lengkap</label>
-                    <input type="text" id="name" required placeholder="Contoh: Muhammad Budi" class="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 outline-none transition focus:ring-2 focus:ring-blue-500/20">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
+                            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        </span>
+                        <input type="text" id="name" required placeholder="Contoh: Muhammad Budi" class="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500/70 rounded-xl pl-11 pr-4 py-3 text-sm text-slate-100 placeholder-slate-500 outline-none transition focus:ring-4 focus:ring-blue-500/10">
+                    </div>
                 </div>
 
+                <!-- Nomor WhatsApp -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Nomor WhatsApp</label>
-                    <input type="tel" id="phone" required placeholder="Contoh: 081234567890" class="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 outline-none transition focus:ring-2 focus:ring-blue-500/20">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
+                            <!-- WhatsApp Mini Icon / Phone Icon -->
+                            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        </span>
+                        <input type="tel" id="phone" required placeholder="Contoh: 081234567890" class="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500/70 rounded-xl pl-11 pr-4 py-3 text-sm text-slate-100 placeholder-slate-500 outline-none transition focus:ring-4 focus:ring-blue-500/10">
+                    </div>
                 </div>
 
+                <!-- Nomor IMEI -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Nomor IMEI (15 Digit)</label>
-                    <input type="text" id="imei" required maxlength="15" placeholder="Ketik *#06# untuk melihat IMEI" class="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-sm font-mono text-slate-100 placeholder-slate-500 outline-none transition focus:ring-2 focus:ring-blue-500/20 tracking-wider">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
+                            <!-- Hash / IMEI representation -->
+                            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
+                        </span>
+                        <input type="text" id="imei" required maxlength="15" placeholder="Ketik *#06# untuk melihat IMEI" class="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500/70 rounded-xl pl-11 pr-4 py-3 text-sm font-mono text-slate-100 placeholder-slate-500 outline-none transition focus:ring-4 focus:ring-blue-500/10 tracking-wider">
+                    </div>
                 </div>
 
+                <!-- Pilih Paket Layanan -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Pilih Paket Layanan</label>
-                    <select id="packageType" class="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-sm text-slate-100 outline-none transition focus:ring-2 focus:ring-blue-500/20">
-                        <option value="1 Bulan Fast (1 Jam)">1 Bulan Fast (1 Jam) - Rp 200.000</option>
-                        <option value="3 Bulan Slow (1-2x24 Jam)">3 Bulan Slow (1-2x24 Jam) - Rp 200.000</option>
-                        <option value="3 Bulan Fast (30 Menit - 1 Jam)">3 Bulan Fast (30 Menit - 1 Jam) - Rp 250.000</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Tangkapan Layar IMEI (*#06#)</label>
-                    <div id="dropZone" class="border-2 border-dashed border-slate-700/80 hover:border-blue-500 rounded-2xl p-5 text-center cursor-pointer transition bg-slate-950/40">
-                        <input type="file" id="imageInput" accept="image/*" class="hidden">
-                        <div id="dropPrompt" class="space-y-1">
-                            <p class="text-sm font-medium text-slate-300">Klik atau geser foto ke sini</p>
-                            <p class="text-xs text-slate-500">Mendukung file JPG, PNG (Maks 5MB)</p>
-                        </div>
-                        <div id="previewContainer" class="hidden flex items-center justify-center gap-3">
-                            <img id="imagePreview" src="" alt="Preview" class="h-16 w-16 object-cover rounded-xl border border-slate-700">
-                            <span class="text-xs text-blue-400 font-medium hover:underline">Ganti Foto</span>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
+                            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </span>
+                        <select id="packageType" class="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500/70 rounded-xl pl-11 pr-4 py-3 text-sm text-slate-100 outline-none transition focus:ring-4 focus:ring-blue-500/10 appearance-none">
+                            <option value="1 Bulan Fast (1 Jam)">1 Bulan Fast (1 Jam) - Rp 200.000</option>
+                            <option value="3 Bulan Slow (1-2x24 Jam)">3 Bulan Slow (1-2x24 Jam) - Rp 200.000</option>
+                            <option value="3 Bulan Fast (30 Menit - 1 Jam)">3 Bulan Fast (30 Menit - 1 Jam) - Rp 250.000</option>
+                        </select>
+                        <!-- custom arrow -->
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" id="btnSubmit" class="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 mt-2 text-sm sm:text-base">
+                <!-- Tangkapan Layar IMEI -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Tangkapan Layar IMEI (*#06#)</label>
+                    <div id="dropZone" class="border-2 border-dashed border-slate-800 hover:border-blue-500 rounded-2xl p-5 text-center cursor-pointer transition bg-slate-950/40 relative group">
+                        <input type="file" id="imageInput" accept="image/*" class="hidden">
+                        <div id="dropPrompt" class="space-y-1.5">
+                            <div class="mx-auto w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 group-hover:text-blue-400 transition">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <p class="text-sm font-medium text-slate-300">Klik atau geser foto ke sini</p>
+                            <p class="text-xs text-slate-500">Mendukung file JPG, PNG (Maks 5MB)</p>
+                        </div>
+                        <div id="previewContainer" class="hidden flex items-center justify-center gap-3 py-1">
+                            <img id="imagePreview" src="" alt="Preview" class="h-16 w-16 object-cover rounded-xl border border-slate-700">
+                            <div class="text-left">
+                                <p class="text-xs font-bold text-slate-200">Bukti_IMEI.png</p>
+                                <span class="text-xs text-blue-400 font-medium hover:underline">Ganti Foto</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tombol Kirim -->
+                <button type="submit" id="btnSubmit" class="neon-glow w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-3.5 px-4 rounded-xl transition-all duration-300 shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 mt-3 text-sm sm:text-base">
                     <span>Kirim Pesanan Sekarang</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </button>
             </form>
 
-            <!-- Hasil Pemesanan & Pembayaran (Hanya muncul setelah klik Kirim) -->
+            <!-- Hasil Pemesanan & Pembayaran -->
             <div id="resultBox" class="mt-6 hidden">
-                <div class="bg-gradient-to-br from-emerald-950/40 to-slate-900 border border-emerald-500/40 rounded-2xl p-5 space-y-4">
+                <div class="bg-gradient-to-br from-emerald-950/40 to-slate-900 border border-emerald-500/30 rounded-2xl p-5 space-y-4">
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">✓</div>
                         <div>
@@ -111,17 +185,17 @@
                     </div>
 
                     <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-2 text-xs">
-                        <div class="flex justify-between"><span class="text-slate-400">No Pesanan:</span><span id="invId" class="font-mono font-bold text-blue-400"></span></div>
-                        <div class="flex justify-between"><span class="text-slate-400">Paket:</span><span id="invPackage" class="font-medium text-slate-200"></span></div>
-                        <div class="flex justify-between border-t border-slate-800 pt-2"><span class="text-slate-400">Total Tagihan:</span><span id="invPrice" class="font-bold text-emerald-400 text-sm"></span></div>
+                        <div class="flex justify-between"><span class="text-slate-450">No Pesanan:</span><span id="invId" class="font-mono font-bold text-blue-400"></span></div>
+                        <div class="flex justify-between"><span class="text-slate-450">Paket:</span><span id="invPackage" class="font-medium text-slate-200"></span></div>
+                        <div class="flex justify-between border-t border-slate-800/80 pt-2.5"><span class="text-slate-450">Total Tagihan:</span><span id="invPrice" class="font-bold text-emerald-400 text-sm"></span></div>
                     </div>
 
-                    <div class="space-y-2 text-xs">
+                    <div class="space-y-2.5 text-xs">
                         <p class="font-semibold text-slate-300">Pilihan Rekening Pembayaran:</p>
-                        <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800 space-y-1 font-mono">
-                            <p>🏦 <b class="text-slate-300">BNI:</b> 1378393527 (A.N AJI)</p>
-                            <p>🏦 <b class="text-slate-300">BRI:</b> 016101083984500 (A.N AJI)</p>
-                            <p>📱 <b class="text-slate-300">DANA / SPAY:</b> 087883927550</p>
+                        <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800 space-y-2 font-mono">
+                            <p>🏦 <span class="text-slate-400">BNI:</span> <b class="text-slate-200">1378393527</b> (A.N AJI)</p>
+                            <p>🏦 <span class="text-slate-400">BRI:</span> <b class="text-slate-200">016101083984500</b> (A.N AJI)</p>
+                            <p>📱 <span class="text-slate-400">DANA / SPAY:</span> <b class="text-slate-250">087883927550</b></p>
                         </div>
                     </div>
 
@@ -133,14 +207,14 @@
         </div>
 
         <!-- Kartu Lacak Status Pesanan -->
-        <div class="w-full bg-slate-900/50 backdrop-blur-md border border-slate-800/80 rounded-2xl p-5 mt-6">
+        <div class="w-full bg-slate-900/50 backdrop-blur-md border border-slate-850 rounded-2xl p-5 mt-6 shadow-xl">
             <h3 class="text-sm font-bold text-slate-300 mb-3 flex items-center gap-2">
-                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <svg class="w-4.5 h-4.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 Lacak Status Pesanan
             </h3>
             <div class="flex gap-2">
-                <input type="text" id="searchInv" placeholder="CONTOH: INV-123456" class="flex-1 bg-slate-950/80 border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-2.5 text-xs sm:text-sm font-mono uppercase text-slate-100 placeholder-slate-500 outline-none transition">
-                <button id="btnCheck" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition border border-slate-700">Cek</button>
+                <input type="text" id="searchInv" placeholder="CONTOH: INV-123456" class="flex-1 bg-slate-950/80 border border-slate-800 focus:border-blue-500/75 rounded-xl px-4 py-2.5 text-xs sm:text-sm font-mono uppercase text-slate-100 placeholder-slate-500 outline-none transition focus:ring-2 focus:ring-blue-500/10">
+                <button id="btnCheck" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-5  rounded-xl text-xs sm:text-sm font-semibold transition border border-slate-700">Cek</button>
             </div>
             <div id="trackResult" class="hidden mt-4"></div>
         </div>
@@ -248,9 +322,9 @@
                 if (data.success) {
                     trackResult.className = 'mt-4 p-4 rounded-2xl bg-slate-950/80 border border-blue-500/30 text-xs space-y-2';
                     trackResult.innerHTML = `
-                        <div class="flex justify-between"><span class="text-slate-400">ID Pesanan:</span><span class="font-mono font-bold text-white">${data.order.id}</span></div>
-                        <div class="flex justify-between"><span class="text-slate-400">Paket:</span><span class="text-slate-200">${data.order.package || '-'}</span></div>
-                        <div class="flex justify-between"><span class="text-slate-400">Status:</span><span class="px-2 py-0.5 rounded-full font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">${data.order.status}</span></div>
+                        <div class="flex justify-between"><span class="text-slate-450">ID Pesanan:</span><span class="font-mono font-bold text-white">${data.order.id}</span></div>
+                        <div class="flex justify-between"><span class="text-slate-450">Paket:</span><span class="text-slate-200">${data.order.package || '-'}</span></div>
+                        <div class="flex justify-between"><span class="text-slate-450">Status:</span><span class="px-2 py-0.5 rounded-full font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">${data.order.status}</span></div>
                     `;
                 } else {
                     trackResult.className = 'mt-4 p-3 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-xs text-center';
